@@ -1,9 +1,9 @@
-import processing.core.PApplet;
+import processing.core.*;
 
 public class myPApplet extends PApplet {
 
-    public static void main(String args[]) { PApplet.main(new String[]{"--present", "myPApplet"});
-    }
+    //public static void main(String args[]) { PApplet.main(new String[]{"--present", "myPApplet"});
+    //}
 
     public void setup(){
         size(500, 500);
