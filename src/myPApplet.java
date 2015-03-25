@@ -9,19 +9,43 @@ public class myPApplet extends PApplet {
     float roadWidth = 70;
     float h = height;
     float w = width;
+    PGraphics pg;
+    car testCar;
 
     public void setup(){
         size(1368, 768);
         frameRate(60);
         bg = createGraphics(1368, 768);
     }
+        pg = createGraphics(width,height);
+        testCar = new car(this,20,10,width/2,height/2);
+    }
 
 
+    public void draw (){
+        background(200);
+        pg = createGraphics(width,height);
+
+        textSize(32);
+        fill(255, 0, 0, 255);
+        text("8======D", width / 2, height / 2);
     public void draw () {
        createBackground();
     }
 
 
+
+
+        testCar.oneStep();
+        testCar.drawSelf(pg);
+        image(pg,0,0);
+
+
+
+    }
+
+    public void setPg(PGraphics pg) {
+        this.pg = pg;
     public void createBackground(){
         bg.beginDraw();
         bg.background(240, 240, 240);

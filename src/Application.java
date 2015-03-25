@@ -1,4 +1,5 @@
 import javax.swing.*;
+import processing.core.*;
 
 /**
  * Created by Terje on 25.03.2015.
@@ -8,6 +9,8 @@ public class Application {
         final myPApplet applet = new myPApplet();
         applet.init();
         final JFrame frame = new JFrame();
+        PGraphics pg = applet.createGraphics(applet.getWidth(),applet.getHeight());
+        //applet.setPg(pg);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel1 = new JPanel();
@@ -17,6 +20,10 @@ public class Application {
         frame.setSize(applet.getWidth(), applet.getHeight() + 100);
 
         frame.setVisible(true);
+
+
+
+
 
     }
 }
