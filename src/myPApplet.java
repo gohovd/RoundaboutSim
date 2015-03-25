@@ -13,6 +13,8 @@ public class myPApplet extends PApplet {
 
 
     public void draw (){
+        textSize(32);
+        text("8======D", width/2, height/2);
 
     }
 }
