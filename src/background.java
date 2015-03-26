@@ -41,8 +41,8 @@ public class background extends PApplet{
         bg.ellipse(width / 2, height / 2, 300, 300);
 
         //yellowlineCircle
-        bg.stroke(255,255,0);
-        bg.ellipse(width/2, height/2,240,240);
+        //bg.stroke(255,255,0);
+        //bg.ellipse(width/2, height/2,240,240);
 
 
         //Innercircle

@@ -8,6 +8,9 @@ public class Application {
     public static void main(String[] args) {
         final myPApplet applet = new myPApplet();
         applet.init();
+
+        PathManager.startUp(applet);
+
         final JFrame frame = new JFrame();
         PGraphics pg = applet.createGraphics(applet.getWidth(),applet.getHeight());
         //applet.setPg(pg);
