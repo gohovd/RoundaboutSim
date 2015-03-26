@@ -34,7 +34,7 @@ public class myPApplet extends PApplet {
         testCar.drawSelf(pg);
 
         image(bg,0,0);
-        image(pg,90,0);
+        image(pg,90,40);
     }
 
 
