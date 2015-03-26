@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public final class Randomizer {
     private static final long SEED = 1234;
-    private static final Random rng = new Random;
+    private static final Random rng = new Random(SEED);
 
 
 
