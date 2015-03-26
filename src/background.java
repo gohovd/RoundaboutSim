@@ -44,10 +44,13 @@ public class background extends PApplet{
         bg.stroke(255,255,0);
         bg.ellipse(width/2, height/2,240,240);
 
+
         //Innercircle
         bg.noStroke();
         bg.fill(255);
         bg.ellipse(width / 2, height / 2, 180, 180);
+        System.out.println(width/2);
+        System.out.println(height/2);
 
 
         //End

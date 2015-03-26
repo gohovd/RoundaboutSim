@@ -34,7 +34,11 @@ public class myPApplet extends PApplet {
         testCar.drawSelf(pg);
 
         image(bg,0,0);
-        image(pg,90,40);
+        image(pg,0,0);
+    }
+
+    public void mousePressed(){
+        System.out.println("X: " + mouseX + " Y: " +mouseY);
     }
 
 
