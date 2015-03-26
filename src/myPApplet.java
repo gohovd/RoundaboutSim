@@ -21,7 +21,7 @@ public class myPApplet extends PApplet {
         bg = createGraphics(width,height);
         testBackground = new background(this);
         testBackground.createBackground(bg);
-        testCar = new car(this,20,10,width/2,height/2);
+        testCar = new car(this,20,10,width/2,height/2+50);
     }
 
 
