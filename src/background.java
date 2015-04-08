@@ -25,21 +25,23 @@ public class background extends PApplet{
         bg.noStroke();
         bg.rectMode(CENTER);
         bg.ellipseMode(CENTER);
+
         //Roads
         bg.fill(80);
         //Horisontal
         bg.rect(0, height / 2, width*2, roadHeight);
         //Vertical
         bg.rect(width/2, 0, roadWidth,height*2);
+
         //Yellow line
         bg.stroke(255,255,0);
         bg.line(0, height/2, width, height/2);
         bg.line(width/2, 0,width/2,height);
+
         //Outercircle
         bg.noStroke();
         bg.fill(80);
-        bg.ellipse(width / 2, height / 2, 300, 300);
-
+        bg.ellipse(width / 2, height / 2, 260, 260);
         //yellowlineCircle
         //bg.stroke(255,255,0);
         //bg.ellipse(width/2, height/2,240,240);
@@ -51,7 +53,6 @@ public class background extends PApplet{
         bg.ellipse(width / 2, height / 2, 180, 180);
         System.out.println(width/2);
         System.out.println(height/2);
-
 
         //End
         bg.endDraw();
