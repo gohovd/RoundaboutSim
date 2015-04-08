@@ -35,6 +35,9 @@ public class myPApplet extends PApplet {
             //testBackground.createBackground(bg);
             //testCar.oneStep();
             //testCar.drawSelf(pg);
+            if(Randomizer.getRng().nextInt(100)>95){
+                carManager.generateCar(this);
+            }
 
             image(bg, 0, 0);
             pg.beginDraw();
@@ -43,6 +46,7 @@ public class myPApplet extends PApplet {
             pg.rect(1, 1, 1, 1);
             pg.endDraw();
             //carManager.drawCars(pg);
+            carManager.oneStep();
             ArrayList<car> cars = carManager.getCarList();
             for(int i = 0; i<10; i++) {
 

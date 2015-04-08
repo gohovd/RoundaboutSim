@@ -1,5 +1,7 @@
 import processing.core.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by Terje on 25.03.2015.
  */
@@ -14,6 +16,10 @@ public class car {
     int lastSector;
     int step = 0;
     float angle;
+
+    int r = 0;
+    int g = 0;
+    int b = 0;
 
     int start = 0;
     int end = 0;
@@ -46,6 +52,10 @@ public class car {
         if(end == 401){endStep = 465;}
 
         setPath(start);
+
+        r = Randomizer.getRng().nextInt(256);
+        g = Randomizer.getRng().nextInt(256);
+        b = Randomizer.getRng().nextInt(256);
     }
 
     public void drawSelf(PGraphics pg){
@@ -54,7 +64,7 @@ public class car {
             pg.rectMode(PApplet.CENTER);
             pg.translate(x, y);
             pg.rotate(angle);
-            pg.fill(0, 255, 0);
+            pg.fill(r,g,b);
             pg.stroke(0);
             pg.rect(0, 0, length, width);
             pg.endDraw();
@@ -70,6 +80,22 @@ public class car {
             //Reaches end of current path
 
             //Go round the roundabout
+            if(curPathId == 100 && step == curPath.getLength()*0.85 && carManager.getSector1()>0){
+                step -= 1;
+            }
+
+            if(curPathId == 200 && step == curPath.getLength()*0.93 && carManager.getSector2()>0){
+                step -= 1;
+            }
+
+            if(curPathId == 300 && step == curPath.getLength()*0.85 && carManager.getSector3()>0){
+                step -= 1;
+            }
+
+            if(curPathId == 400 && step == curPath.getLength()*0.93 && carManager.getSector4()>0){
+                step -= 1;
+            }
+
             if (curPathId == 0 && step >= curPath.getLength()) {
                 step = 0;
             } else if (step >= curPath.getLength() | (step == endStep && curPathId == 0)) {
@@ -98,26 +124,25 @@ public class car {
 
 
     public void findCurrentSector(){
-        sector = 1;
-        if(x < p.width/2){
-            if(y < p.height/2){
-                sector = 1;
-            }else if(y >= p.height/2){
-                sector = 2;
-            }
-        }else if(x >= p.width/2){
-            if(y < p.height/2){
-                sector = 4;
-            }else if(y >= p.height/2){
-                sector = 3;
-            }
+        sector = 0;
+        if(x<p.width/2+35 && x>p.width/2-135 && y>p.height/2 && y<p.height/2+135){
+            sector = 1;
+        }
+        if(x>p.width/2 && x<p.width/2 +135 && y>p.height/2 - 35 && y<p.height/2 + 135){
+            sector = 2;
+        }
+        if(x<p.width/2+135 && x>p.width/2-35 && y<p.height/2 && y>p.height/2-135){
+            sector = 3;
+        }
+        if(x<p.width/2 && x>p.width/2-135 && y<p.height/2+35 && y>p.height/2-135){
+            sector = 4;
         }
 
 
         //Debugging. message when sector changes
         if(sector != lastSector){
-            System.out.println("Sector changed");
-            System.out.println("Sector: " + sector);
+            //System.out.println("Sector changed");
+            //System.out.println("Sector: " + sector);
         }
 
 
@@ -182,6 +207,11 @@ public class car {
 
     }
 
-
-
+    public int getSector() {
+        if(enabled) {
+            return sector;
+        }else{
+            return 0;
+        }
+    }
 }
