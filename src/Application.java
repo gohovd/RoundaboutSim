@@ -8,6 +8,20 @@ public class Application {
     public static void main(String[] args) {
         final myPApplet applet = new myPApplet();
         applet.init();
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+        carManager.generateCar(applet);
+
+
 
         PathManager.startUp(applet);
 
@@ -23,6 +37,8 @@ public class Application {
         frame.setSize(applet.getWidth(), applet.getHeight() + 100);
 
         frame.setVisible(true);
+
+
 
 
 

@@ -9,7 +9,7 @@ public final class Randomizer {
 
 
 
-    public Random getRng(){
+    public static Random getRng(){
         return rng;
     }
 

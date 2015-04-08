@@ -1,5 +1,7 @@
 import processing.core.*;
 
+import java.util.ArrayList;
+
 public class myPApplet extends PApplet {
 
     //public static void main(String args[]) { PApplet.main(new String[]{"--present", "myPApplet"});
@@ -21,20 +23,42 @@ public class myPApplet extends PApplet {
         bg = createGraphics(width,height);
         testBackground = new background(this);
         testBackground.createBackground(bg);
-        testCar = new car(this,20,10,width/2,height/2+50);
+        //testCar = new car(this,20,10,width/2,height/2+50);
     }
 
 
     public void draw (){
-        background(200);
-        pg = createGraphics(width,height);
+        if(millis()>1000) {
+            background(200);
+            pg = createGraphics(width, height);
 
-        //testBackground.createBackground(bg);
-        testCar.oneStep();
-        testCar.drawSelf(pg);
+            //testBackground.createBackground(bg);
+            //testCar.oneStep();
+            //testCar.drawSelf(pg);
 
-        image(bg,0,0);
-        image(pg,0,0);
+            image(bg, 0, 0);
+            pg.beginDraw();
+            pg.fill(240, 240, 240);
+            pg.stroke(240, 240, 240);
+            pg.rect(1, 1, 1, 1);
+            pg.endDraw();
+            //carManager.drawCars(pg);
+            ArrayList<car> cars = carManager.getCarList();
+            for(int i = 0; i<10; i++) {
+
+                for (car curCar : cars) {
+                    curCar.oneStep();
+                    //curCar.drawSelf(pg);
+                    //System.out.println("test");
+                }
+            }
+            for (car curCar : cars) {
+                //curCar.oneStep();
+                curCar.drawSelf(pg);
+                //System.out.println("test");
+            }
+            image(pg, 0, 0);
+        }
     }
 
     public void mousePressed(){

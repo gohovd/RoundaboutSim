@@ -16,6 +16,7 @@ public class Path {
 
     public void linePath(int amountOfSteps, float xStart,float yStart,float xEnd ,float yEnd){
         array = new float[3][amountOfSteps];
+        length = amountOfSteps;
         float yDif = (yEnd-yStart);
         float xDif = (xEnd-xStart);
         float yInc = yDif/amountOfSteps;
@@ -41,7 +42,7 @@ public class Path {
         for(int i = 0; i<amountOfSteps; i++){
             array[0][amountOfSteps-1-i] += x + Math.cos(i*(PApplet.TAU/amountOfSteps))*r;
             array[1][amountOfSteps-1-i] += y + Math.sin(i*(PApplet.TAU/amountOfSteps))*r;
-            System.out.println(Math.cos(i*(PApplet.TAU/amountOfSteps)));
+            //System.out.println(Math.cos(i*(PApplet.TAU/amountOfSteps)));
             array[2][amountOfSteps-1-i] += (PApplet.TAU/amountOfSteps)*i + PApplet.PI/2;
         }
 
@@ -55,5 +56,9 @@ public class Path {
     }
     public float getAng(int i){
         return array[2][i];
+    }
+
+    public int getLength() {
+        return length;
     }
 }
