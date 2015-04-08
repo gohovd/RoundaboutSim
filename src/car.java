@@ -72,53 +72,56 @@ public class car {
     }
     public void oneStep() {
         if (enabled) {
+            if (!carManager.carAhead(curPathId, step)) {
 
-            //angle += 0.009;
-            //x += Math.cos(angle);
-            //y += Math.sin(angle);
-            step += 1;
-            //Reaches end of current path
+                //angle += 0.009;
+                //x += Math.cos(angle);
+                //y += Math.sin(angle);
 
-            //Go round the roundabout
-            if(curPathId == 100 && step == curPath.getLength()*0.85 && carManager.getSector1()>0){
-                step -= 1;
-            }
+                step += 1;
+                //Reaches end of current path
 
-            if(curPathId == 200 && step == curPath.getLength()*0.93 && carManager.getSector2()>0){
-                step -= 1;
-            }
-
-            if(curPathId == 300 && step == curPath.getLength()*0.85 && carManager.getSector3()>0){
-                step -= 1;
-            }
-
-            if(curPathId == 400 && step == curPath.getLength()*0.93 && carManager.getSector4()>0){
-                step -= 1;
-            }
-
-            if (curPathId == 0 && step >= curPath.getLength()) {
-                step = 0;
-            } else if (step >= curPath.getLength() | (step == endStep && curPathId == 0)) {
-                if (curPathId == end) {
-                    enabled = false;
+                //Go round the roundabout
+                if (curPathId == 100 && step == curPath.getLength() * 0.85 && carManager.getSector1() > 0) {
+                    step -= 1;
                 }
-                if (curPathId == start) {
-                    setPath(0);
-                } else if (curPathId == 0) {
-                    setPath(end);
+
+                if (curPathId == 200 && step == curPath.getLength() * 0.93 && carManager.getSector2() > 0) {
+                    step -= 1;
                 }
+
+                if (curPathId == 300 && step == curPath.getLength() * 0.85 && carManager.getSector3() > 0) {
+                    step -= 1;
+                }
+
+                if (curPathId == 400 && step == curPath.getLength() * 0.93 && carManager.getSector4() > 0) {
+                    step -= 1;
+                }
+
+                if (curPathId == 0 && step >= curPath.getLength()) {
+                    step = 0;
+                } else if (step >= curPath.getLength() | (step == endStep && curPathId == 0)) {
+                    if (curPathId == end) {
+                        enabled = false;
+                    }
+                    if (curPathId == start) {
+                        setPath(0);
+                    } else if (curPathId == 0) {
+                        setPath(end);
+                    }
+                }
+                if (enabled) {
+
+
+                    x = curPath.getX(step);
+                    y = curPath.getY(step);
+                    angle = curPath.getAng(step);
+
+                    findCurrentSector();
+                }
+
+
             }
-            if(enabled) {
-
-
-                x = curPath.getX(step);
-                y = curPath.getY(step);
-                angle = curPath.getAng(step);
-
-                findCurrentSector();
-            }
-
-
         }
     }
 
@@ -213,5 +216,17 @@ public class car {
         }else{
             return 0;
         }
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public int getCurPathId() {
+        return curPathId;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }
