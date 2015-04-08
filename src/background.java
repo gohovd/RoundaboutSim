@@ -46,13 +46,45 @@ public class background extends PApplet{
         //bg.stroke(255,255,0);
         //bg.ellipse(width/2, height/2,240,240);
 
-
         //Innercircle
         bg.noStroke();
         bg.fill(255);
         bg.ellipse(width / 2, height / 2, 180, 180);
         System.out.println(width/2);
         System.out.println(height/2);
+
+        //Vikeplikt
+        bg.stroke(0);
+        //Right
+        bg.line(820, 330, 840, 330);
+        bg.fill(255,0,0);
+        bg.ellipse(820,330,20,20);
+        bg.fill(255);
+        bg.rect(820,330,5,20);
+
+        //Down
+        bg.stroke(0);
+        bg.line(740,530,740,540);
+        bg.fill(255,0,0);
+        bg.ellipse(740,520,20,20);
+        bg.fill(255);
+        bg.rect(740,520,20,5);
+
+        //Left
+        bg.stroke(0);
+        bg.line(540,440,520,440);
+        bg.fill(255,0,0);
+        bg.ellipse(540,440,20,20);
+        bg.fill(255);
+        bg.rect(540,440,5,20);
+
+        //Up
+        bg.stroke(0);
+        bg.line(630,240,630,220);
+        bg.fill(255,0,0);
+        bg.ellipse(630,240,20,20);
+        bg.fill(255);
+        bg.rect(630,240,20,5);
 
         //End
         bg.endDraw();
