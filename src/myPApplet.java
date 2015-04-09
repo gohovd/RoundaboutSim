@@ -35,9 +35,7 @@ public class myPApplet extends PApplet {
             //testBackground.createBackground(bg);
             //testCar.oneStep();
             //testCar.drawSelf(pg);
-            if(Randomizer.getRng().nextInt(100)>90){
-                carManager.generateCar(this);
-            }
+
 
             image(bg, 0, 0);
             pg.beginDraw();
@@ -46,9 +44,13 @@ public class myPApplet extends PApplet {
             pg.rect(1, 1, 1, 1);
             pg.endDraw();
             //carManager.drawCars(pg);
-            carManager.oneStep();
-            ArrayList<car> cars = carManager.getCarList();
-            for(int i = 0; i<10; i++) {
+
+            for(int i = 0; i<StatMan.getStepsPerDraw(); i++) {
+                if(Randomizer.getRng().nextInt(100)>98){
+                    carManager.generateCar(this);
+                }
+                carManager.oneStep();
+                ArrayList<car> cars = carManager.getCarList();
 
                 for (car curCar : cars) {
                     curCar.oneStep();
@@ -56,12 +58,19 @@ public class myPApplet extends PApplet {
                     //System.out.println("test");
                 }
             }
+            ArrayList<car> cars = carManager.getCarList();
             for (car curCar : cars) {
                 //curCar.oneStep();
                 curCar.drawSelf(pg);
                 //System.out.println("test");
             }
+            String infoString = "Count: " + StatMan.getPassedCarsCounter();
+
             image(pg, 0, 0);
+            stroke(0);
+            fill(0);
+            textSize(30);
+            text(infoString,50,50);
         }
     }
 

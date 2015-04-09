@@ -49,6 +49,7 @@ public final class carManager {
         }
         for(car curCar: carsToRemove){
             carList.remove(curCar);
+            StatMan.incCounter();
             //System.out.println("Removed");
         }
     }
