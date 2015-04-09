@@ -35,7 +35,7 @@ public class myPApplet extends PApplet {
             //testBackground.createBackground(bg);
             //testCar.oneStep();
             //testCar.drawSelf(pg);
-            if(Randomizer.getRng().nextInt(100)>80){
+            if(Randomizer.getRng().nextInt(100)>90){
                 carManager.generateCar(this);
             }
 

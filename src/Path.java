@@ -43,7 +43,7 @@ public class Path {
             array[0][amountOfSteps-1-i] += x + Math.cos(i*(PApplet.TAU/amountOfSteps))*r;
             array[1][amountOfSteps-1-i] += y + Math.sin(i*(PApplet.TAU/amountOfSteps))*r;
             //System.out.println(Math.cos(i*(PApplet.TAU/amountOfSteps)));
-            array[2][amountOfSteps-1-i] += (PApplet.TAU/amountOfSteps)*i + PApplet.PI/2;
+            array[2][amountOfSteps-1-i] += (PApplet.TAU/amountOfSteps)*i - PApplet.PI/2;
         }
 
     }

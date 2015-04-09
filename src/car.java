@@ -24,6 +24,9 @@ public class car {
     int start = 0;
     int end = 0;
 
+    int blinkCounter = 0;
+    int blinkMax = 8;
+
     Path curPath;
     int curPathId;
     int endStep = 0;
@@ -67,6 +70,14 @@ public class car {
             pg.fill(r,g,b);
             pg.stroke(0);
             pg.rect(0, 0, length, width);
+            if(sector == 5){
+                blinkCounter++;
+                if(blinkCounter >= blinkMax/2) {
+                    if(blinkCounter == blinkMax){blinkCounter = 0;}
+                    pg.fill(255, 102, 0);
+                    pg.rect(length / 2 - 4, width / 2, 8, 4);
+                }
+            }
             pg.endDraw();
         }
     }
@@ -128,17 +139,30 @@ public class car {
 
     public void findCurrentSector(){
         sector = 0;
-        if(x<p.width/2+35 && x>p.width/2-135 && y>p.height/2 && y<p.height/2+135){
+        if(x<p.width/2+35 && x>p.width/2-135 && y>p.height/2 && y<p.height/2+135 && sector != 5){
             sector = 1;
+            if(end == 101) {
+                sector = 5;
+            }
         }
-        if(x>p.width/2 && x<p.width/2 +135 && y>p.height/2 - 35 && y<p.height/2 + 135){
+        if(x>p.width/2 && x<p.width/2 +135 && y>p.height/2 - 35 && y<p.height/2 + 135 && sector != 5){
             sector = 2;
+            if(end == 201) {
+                sector = 5;
+            }
+
         }
-        if(x<p.width/2+135 && x>p.width/2-35 && y<p.height/2 && y>p.height/2-135){
+        if(x<p.width/2+135 && x>p.width/2-35 && y<p.height/2 && y>p.height/2-135 && sector != 5){
             sector = 3;
+            if(end == 301) {
+                sector = 5;
+            }
         }
-        if(x<p.width/2 && x>p.width/2-135 && y<p.height/2+35 && y>p.height/2-135){
+        if(x<p.width/2 && x>p.width/2-135 && y<p.height/2+35 && y>p.height/2-135 && sector != 5){
             sector = 4;
+            if(end == 401) {
+                sector = 5;
+            }
         }
 
 
