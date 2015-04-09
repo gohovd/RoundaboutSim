@@ -16,10 +16,14 @@ public final class StatMan {
         return stepsPerDraw;
     }
     public static void incStepsPerDraw(){
-        stepsPerDraw++;
+        if(stepsPerDraw == 1){
+            stepsPerDraw = 0;
+        }
+        stepsPerDraw+=10;
     }
     public static void decStepsPerDraw(){
-        stepsPerDraw--;
+
+        stepsPerDraw-=10;
         if(stepsPerDraw<=1){
             stepsPerDraw=1;
         }

@@ -64,7 +64,7 @@ public class myPApplet extends PApplet {
                 curCar.drawSelf(pg);
                 //System.out.println("test");
             }
-            String infoString = "Count: " + StatMan.getPassedCarsCounter();
+            String infoString = "Count: " + StatMan.getPassedCarsCounter() + "\n" + "Speed: " + StatMan.getStepsPerDraw();
 
             image(pg, 0, 0);
             stroke(0);

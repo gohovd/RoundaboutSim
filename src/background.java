@@ -54,37 +54,50 @@ public class background extends PApplet{
         System.out.println(height/2);
 
         //Vikeplikt
+        bg.strokeWeight(3);
         bg.stroke(0);
         //Right
         bg.line(820, 330, 840, 330);
-        bg.fill(255,0,0);
+        bg.fill(0,0,255);
         bg.ellipse(820,330,20,20);
-        bg.fill(255);
-        bg.rect(820,330,5,20);
+        //bg.fill(255);
+        //bg.rect(820,330,5,20);
+        bg.stroke(255,255,255);
+        bg.ellipse(820,330,12,12);
 
         //Down
         bg.stroke(0);
         bg.line(740,530,740,540);
-        bg.fill(255,0,0);
+        bg.fill(0,0,255);
         bg.ellipse(740,520,20,20);
-        bg.fill(255);
-        bg.rect(740,520,20,5);
+        //bg.fill(255);
+        //bg.rect(740,520,20,5);
+        bg.stroke(255,255,255);
+        bg.ellipse(740,520,12,12);
 
         //Left
         bg.stroke(0);
         bg.line(540,440,520,440);
-        bg.fill(255,0,0);
+        bg.fill(0,0,255);
         bg.ellipse(540,440,20,20);
-        bg.fill(255);
-        bg.rect(540,440,5,20);
+        //bg.fill(255);
+        //bg.rect(540,440,5,20);
+        bg.stroke(255,255,255);
+        bg.ellipse(540,440,12,12);
 
         //Up
+
         bg.stroke(0);
         bg.line(630,240,630,220);
-        bg.fill(255,0,0);
+        bg.fill(0,0,255);
         bg.ellipse(630,240,20,20);
-        bg.fill(255);
-        bg.rect(630,240,20,5);
+        bg.noFill();
+
+        bg.stroke(255,255,255);
+        bg.ellipse(630,240,12,12);
+        //bg.fill(255);
+        //bg.rect(630,240,20,5);
+        bg.strokeWeight(1);
 
         //End
         bg.endDraw();
