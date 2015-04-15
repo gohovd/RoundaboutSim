@@ -64,6 +64,13 @@ public final class carManager {
         for(car curCar : carList){
             if(curCar.isEnabled()) {
                 if (curCar.getCurPathId() == curPathId) {
+                    /*
+
+                    int dif = curCar.getStep() - myStep;
+                    int dif2 = curCar.getStep()+1000 - myStep;
+                    if((dif < 100 && dif > 0) | (dif2 < 100 && dif2 > 0 && myStep>900)){
+                        return true;
+                    }*/
                     if (curCar.getStep() < myStep + 100 && curCar.getStep() > myStep) {
                         return true;
                     }

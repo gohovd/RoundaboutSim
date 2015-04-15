@@ -16,4 +16,8 @@ public final class Randomizer {
     public static void reset(){
         rng.setSeed(SEED);
     }
+
+    public static long getSeed() {
+        return SEED;
+    }
 }

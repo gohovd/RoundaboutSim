@@ -16,9 +16,9 @@ public class car {
     int lastSector;
     int step = 0;
     float angle;
-    int speed = 5;
+    int speed = 3;
 
-    int maxSpeed = 5;
+    int maxSpeed = 3;
     float actualSpeed = maxSpeed;
 
     int r = 0;

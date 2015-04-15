@@ -11,7 +11,7 @@ public class myPApplet extends PApplet {
     float w = width;
 
     Long totalStepCount = 0L;
-    Long stepsPerReset = 1000000L;
+    Long stepsPerReset = 100000L;
 
     PGraphics pg;
     PGraphics bg;
@@ -50,7 +50,7 @@ public class myPApplet extends PApplet {
             //carManager.drawCars(pg);
 
             for(int i = 0; i<StatMan.getStepsPerDraw(); i++) {
-                if(Randomizer.getRng().nextInt(100)>98){
+                if(Randomizer.getRng().nextInt(100)>95){
                     carManager.generateCar(this);
                 }
                 carManager.oneStep();
