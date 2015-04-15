@@ -9,6 +9,10 @@ public class myPApplet extends PApplet {
 
     float h = height;
     float w = width;
+
+    Long totalStepCount = 0L;
+    Long stepsPerReset = 1000000L;
+
     PGraphics pg;
     PGraphics bg;
     car testCar;
@@ -50,6 +54,11 @@ public class myPApplet extends PApplet {
                     carManager.generateCar(this);
                 }
                 carManager.oneStep();
+                totalStepCount++;
+                if(totalStepCount>stepsPerReset){
+                    totalStepCount=0L;
+                    StatMan.saveDataAndReset();
+                }
                 ArrayList<car> cars = carManager.getCarList();
 
                 for (car curCar : cars) {
@@ -64,7 +73,8 @@ public class myPApplet extends PApplet {
                 curCar.drawSelf(pg);
                 //System.out.println("test");
             }
-            String infoString = "Count: " + StatMan.getPassedCarsCounter() + "\n" + "Speed: " + StatMan.getStepsPerDraw();
+            String infoString = "Count: " + StatMan.getPassedCarsCounter() + "\n" + "StepsPerDraw: " + StatMan.getStepsPerDraw() + "\n" + "AvgSpeed: " + carManager.getAverageSpeed() + "\n" + "AvgCarsPassed: " + StatMan.getAveragePassedCars();
+            infoString += "\n" + "n: " + StatMan.getN();
 
             image(pg, 0, 0);
             stroke(0);

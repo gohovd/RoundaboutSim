@@ -12,6 +12,7 @@ public final class carManager {
     private static int sector2 = 0;
     private static int sector3 = 0;
     private static int sector4 = 0;
+    private static float averageSpeed = 0;
 
     public static void generateCar(PApplet p){
         int start = (1+Randomizer.getRng().nextInt(4))*100;
@@ -30,10 +31,14 @@ public final class carManager {
         sector2 = 0;
         sector3 = 0;
         sector4 = 0;
+        float totalSpeed = 0;
+        float totalAmountOfCars = 0;
         ArrayList<car> carsToRemove = new ArrayList<car>();
 
         for(car curCar : carList){
             if(curCar.isEnabled()) {
+                totalSpeed +=curCar.getSpeed();
+                totalAmountOfCars+=1;
                 if (curCar.getSector() == 1) {
                     sector1 += 1;
                 } else if (curCar.getSector() == 2) {
@@ -52,13 +57,14 @@ public final class carManager {
             StatMan.incCounter();
             //System.out.println("Removed");
         }
+        averageSpeed = totalSpeed/totalAmountOfCars;
     }
 
     public static boolean carAhead(int curPathId, int myStep){
         for(car curCar : carList){
             if(curCar.isEnabled()) {
                 if (curCar.getCurPathId() == curPathId) {
-                    if (curCar.getStep() < myStep + 50 && curCar.getStep() > myStep) {
+                    if (curCar.getStep() < myStep + 100 && curCar.getStep() > myStep) {
                         return true;
                     }
                 }
@@ -70,6 +76,10 @@ public final class carManager {
 
     public static ArrayList<car> getCarList() {
         return carList;
+    }
+
+    public static float getAverageSpeed() {
+        return averageSpeed;
     }
 
     public static int getSector1() {

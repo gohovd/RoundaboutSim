@@ -16,6 +16,10 @@ public class car {
     int lastSector;
     int step = 0;
     float angle;
+    int speed = 5;
+
+    int maxSpeed = 5;
+    float actualSpeed = maxSpeed;
 
     int r = 0;
     int g = 0;
@@ -45,6 +49,7 @@ public class car {
         this.findCurrentSector();
         this.start = start;
         this.end = end;
+        maxSpeed += Math.round(p.random(2)) -1;
         if(start == 100){startStep = 785;}
         if(end == 101){endStep = 715;}
         if(start == 200){startStep = 35;}
@@ -83,35 +88,45 @@ public class car {
     }
     public void oneStep() {
         if (enabled) {
-            if (!carManager.carAhead(curPathId, step)) {
+            if (carManager.carAhead(curPathId, step)) { actualSpeed -= 1; }
+
+            //Go round the roundabout
+            if (curPathId == 100 && step >= curPath.getLength() * 0.81 && step <= curPath.getLength() * 0.87 && carManager.getSector1() > 0) {
+                //step -= speed;
+                actualSpeed -= 1;
+            }
+
+            if (curPathId == 200 && step >= curPath.getLength() * 0.88 && step <= curPath.getLength() * 0.95 && carManager.getSector2() > 0) {
+                //step -= speed;
+                actualSpeed -= 1;
+            }
+
+            if (curPathId == 300 && step >= curPath.getLength() * 0.81 && step <= curPath.getLength() * 0.87 && carManager.getSector3() > 0) {
+                //step -= speed;
+                actualSpeed -= 1;
+            }
+
+            if (curPathId == 400 && step >= curPath.getLength() * 0.88 && step <= curPath.getLength() * 0.95 && carManager.getSector4() > 0) {
+                //step -= speed;
+                actualSpeed -= 1;
+            }
 
                 //angle += 0.009;
                 //x += Math.cos(angle);
                 //y += Math.sin(angle);
+                actualSpeed += 0.2;
+                if(actualSpeed>maxSpeed){actualSpeed = maxSpeed;}
+                else if(actualSpeed<0){actualSpeed = 0;}
+                speed = Math.round(actualSpeed);
 
-                step += 1;
+                step += speed;
                 //Reaches end of current path
 
-                //Go round the roundabout
-                if (curPathId == 100 && step == curPath.getLength() * 0.85 && carManager.getSector1() > 0) {
-                    step -= 1;
-                }
 
-                if (curPathId == 200 && step == curPath.getLength() * 0.93 && carManager.getSector2() > 0) {
-                    step -= 1;
-                }
-
-                if (curPathId == 300 && step == curPath.getLength() * 0.85 && carManager.getSector3() > 0) {
-                    step -= 1;
-                }
-
-                if (curPathId == 400 && step == curPath.getLength() * 0.93 && carManager.getSector4() > 0) {
-                    step -= 1;
-                }
 
                 if (curPathId == 0 && step >= curPath.getLength()) {
                     step = 0;
-                } else if (step >= curPath.getLength() | (step == endStep && curPathId == 0)) {
+                } else if (step >= curPath.getLength() | (step >= endStep && step <= endStep + 10 && curPathId == 0)) {
                     if (curPathId == end) {
                         enabled = false;
                     }
@@ -132,38 +147,64 @@ public class car {
                 }
 
 
-            }
+
         }
     }
 
 
     public void findCurrentSector(){
         sector = 0;
-        if(x<p.width/2+35 && x>p.width/2-135 && y>p.height/2 && y<p.height/2+135 && sector != 5){
+
+        /*if(x<p.width/2+35 && x>p.width/2-135 && y>p.height/2 && y<p.height/2+135 && sector != 5){
+            sector = 1;
+            if(end == 101) {
+                sector = 5;
+            }
+        }*/
+        if(curPathId == 0 && step >= 525 && step < 775){
             sector = 1;
             if(end == 101) {
                 sector = 5;
             }
         }
-        if(x>p.width/2 && x<p.width/2 +135 && y>p.height/2 - 35 && y<p.height/2 + 135 && sector != 5){
+        /*if(x>p.width/2 && x<p.width/2 +135 && y>p.height/2 - 35 && y<p.height/2 + 135 && sector != 5){
             sector = 2;
             if(end == 201) {
                 sector = 5;
             }
 
+        }*/
+        if(curPathId == 0 && step >= 775 && step < 1001 | curPathId == 0 && step >= 0 && step < 25 ){
+            sector = 2;
+            if(end == 201) {
+                sector = 5;
+            }
         }
-        if(x<p.width/2+135 && x>p.width/2-35 && y<p.height/2 && y>p.height/2-135 && sector != 5){
+        /*if(x<p.width/2+135 && x>p.width/2-35 && y<p.height/2 && y>p.height/2-135 && sector != 5){
+            sector = 3;
+            if(end == 301) {
+                sector = 5;
+            }
+        }*/
+        if(curPathId == 0 && step >= 25 && step < 275){
             sector = 3;
             if(end == 301) {
                 sector = 5;
             }
         }
-        if(x<p.width/2 && x>p.width/2-135 && y<p.height/2+35 && y>p.height/2-135 && sector != 5){
+        /*if(x<p.width/2 && x>p.width/2-135 && y<p.height/2+35 && y>p.height/2-135 && sector != 5){
+            sector = 4;
+            if(end == 401) {
+                sector = 5;
+            }
+        }*/
+        if(curPathId == 0 && step >= 275 && step < 525){
             sector = 4;
             if(end == 401) {
                 sector = 5;
             }
         }
+
 
 
         //Debugging. message when sector changes
@@ -240,6 +281,14 @@ public class car {
         }else{
             return 0;
         }
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public int getStep() {

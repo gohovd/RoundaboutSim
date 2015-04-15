@@ -24,7 +24,7 @@ public class Application {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel1 = new JPanel();
-        JButton btnUp = new JButton("Speed Up");
+        JButton btnUp = new JButton("StepPerDraw Up");
         btnUp.addActionListener(new ActionListener() {
                                     @Override
                                 public void actionPerformed(ActionEvent e){
@@ -32,7 +32,7 @@ public class Application {
                                     }
                                 });
 
-        JButton btnDown = new JButton("Speed Down");
+        JButton btnDown = new JButton("StepPerDraw Down");
 
         btnDown.addActionListener(new ActionListener() {
             @Override
